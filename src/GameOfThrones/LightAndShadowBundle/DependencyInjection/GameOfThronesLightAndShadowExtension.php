@@ -1,5 +1,5 @@
 <?php
-namespace GameOfThrones\MorsWestfordBundle\DependencyInjection;
+namespace GameOfThrones\LightAndShadowBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder,
     Symfony\Component\Config\FileLocator,
@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder,
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class GameOfThronesMorsWestfordExtension extends Extension
+class GameOfThronesLightAndShadowExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -21,7 +21,7 @@ class GameOfThronesMorsWestfordExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('config.yml');
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.xml');
     }
 }

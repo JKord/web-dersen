@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="game_of_thrones_mors_westford.example.class">GameOfThrones\MorsWestfordBundle\Example</parameter>
+        <parameter key="game_of_thrones_legacy.example.class">GameOfThrones\LegacyBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="game_of_thrones_mors_westford.example" class="%game_of_thrones_mors_westford.example.class%">
+        <service id="game_of_thrones_legacy.example" class="%game_of_thrones_legacy.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

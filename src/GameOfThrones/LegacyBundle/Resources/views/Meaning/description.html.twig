@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Legacy{% endblock %}
+
+{% block content %}
+    <h2>Organizations can have compelling reasons for keeping a legacy system, such as:</h2>
+    <ul>
+        {% for d in des %}
+            <li>{{ d|upper }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
