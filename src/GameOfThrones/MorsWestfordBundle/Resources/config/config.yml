@@ -1,0 +1,5 @@
+services:
+    GameOfThrones.twig.MorsWestford_Extension:
+        class: GameOfThrones\MorsWestfordBundle\Twig\MorsWestfordExtension
+        tags:
+            - { name: twig.extension }

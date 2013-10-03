@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Vasteras{% endblock %}
+
+{% set block = 'GameOfThronesMorsWestfordBundle:Blocks:list.html.twig' %}
+{% block content %}
+    {% include block with {'list': numbers.points } %}
+    {% include block with {'list': numbers.pieces } %}
+{% endblock %}

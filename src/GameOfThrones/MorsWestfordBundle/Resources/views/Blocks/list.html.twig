@@ -1,0 +1,7 @@
+<p>{{ dump(list.name) }}</p>
+<ul>
+    {% for l in list.ch %}
+        <li>{{ l }} {{ l|wordSlope(list.name) }}</li>
+    {% endfor %}
+</ul>
+<br>
