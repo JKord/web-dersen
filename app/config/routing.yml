@@ -1,3 +1,8 @@
+game_of_thrones_light_and_shadow:
+    resource: "@GameOfThronesLightAndShadowBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 game_of_thrones_legacy:
     resource: "@GameOfThronesLegacyBundle/Controller/"
     type:     annotation

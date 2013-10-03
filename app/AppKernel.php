@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new GameOfThrones\MorsWestfordBundle\GameOfThronesMorsWestfordBundle(),
             new GameOfThrones\LegacyBundle\GameOfThronesLegacyBundle(),
+            new GameOfThrones\LightAndShadowBundle\GameOfThronesLightAndShadowBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'jura'))) {
