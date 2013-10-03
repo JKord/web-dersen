@@ -5,9 +5,23 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <style type="text/css">
+            .content {
+                width: 800px;
+                margin: 10px auto;
+            }
+            footer {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div class="content">{% block content %}{% endblock %}</div>
+            <footer>
+                <span>Game Of Thrones © 2013</span>
+            </footer>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

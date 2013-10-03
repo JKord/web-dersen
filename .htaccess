@@ -2,12 +2,12 @@ AddDefaultCharset UTF-8
 
 <IfModule  mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /    
+    RewriteBase /
     RewriteCond %{REQUEST_URI} !^.*update.php*
-    RewriteRule ^(.*)$ web-dersen/web/$1 [L]
+    RewriteRule ^(.*)$ /web-dersen/web/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ web-dersen/web/$1 [L]
+    RewriteRule ^(.*)$ /web-dersen/web/$1 [L]
 
     SetEnv TZ Europe/Kiev
 </IfModule>
