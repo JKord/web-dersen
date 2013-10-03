@@ -12,10 +12,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 class LightController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="light")
      */
     public function indexAction()
     {
         return new Response('Light');
+    }
+
+    /**
+     * @Route("/Gandalf", name="light_gandalf")
+     * @Template()
+     */
+    public function gandalfAction()
+    {
+        return array();
     }
 }

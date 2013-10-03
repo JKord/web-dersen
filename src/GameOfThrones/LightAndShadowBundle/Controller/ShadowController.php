@@ -7,15 +7,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/Light")
+ * @Route("/Shadow")
  */
-class LightController extends Controller
+class ShadowController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="shadow")
      */
     public function indexAction()
     {
-        return new Response('Light');
+        return new Response('Shadow');
+    }
+
+    /**
+     * @Route("/Saruman", name="shadow_saruman")
+     * @Template()
+     */
+    public function sarumanAction()
+    {
+        return array();
     }
 }
