@@ -1,3 +1,8 @@
+game_of_thrones_legacy:
+    resource: "@GameOfThronesLegacyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 game_of_thrones_mors_westford:
     resource: "@GameOfThronesMorsWestfordBundle/Controller/"
     type:     annotation
