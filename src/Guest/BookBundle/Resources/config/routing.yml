@@ -1,0 +1,3 @@
+guest_book_homepage:
+    pattern:  /guest_book
+    defaults: { _controller: GuestBookBundle:Index:index }

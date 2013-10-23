@@ -1,0 +1,60 @@
+/*----------------------------------------------------------------------------------*/
+/*------------------------------RESET DEFAULT STYLES--------------------------------*/
+/*----------------------------------------------------------------------------------*/
+li {
+    list-style:none;
+}
+
+/*----------------------------------------------------------------------------------*/
+/*-------------------------------------WRAPPER--------------------------------------*/
+/*----------------------------------------------------------------------------------*/
+body{
+
+}
+
+.wrapper {
+
+}
+
+.content {
+    width: 800px;
+    margin: 10px auto;
+
+}
+
+footer {
+    text-align: center;
+}
+
+.reviews {
+    padding-top: 5px;
+}
+
+.reviews li span {
+    display: block;
+    float: right;
+}
+.reviews li .caption {
+    padding: 2px;
+    color: #2aabd2;
+}
+.reviews li .text {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #c4e3f3;
+    border-radius: 10px;
+}
+
+ul.form {
+    background-color: #c0c0c0;
+    padding: 10px;
+    border-radius: 10px;
+}
+ul.form li {
+    margin-bottom: 10px;
+}
+ul.form li label {
+    display: block;
+    float: left;
+    width: 200px;
+}

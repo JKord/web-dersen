@@ -1,0 +1,7 @@
+parameters:
+    guest_book.repositoryData.class: Guest\BookBundle\Libraries\RepositoryData
+
+services:
+    guest_book.repositoryData:
+        class: %guest_book.repositoryData.class%
+        arguments: []

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}Welcome to GuestBook{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/guestbook/css/style.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        {% block body %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+            <footer>
+                <span>GuestBook © 2013</span>
+            </footer>
+        {% endblock %}
+    </div>
+</body>
+</html>

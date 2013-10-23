@@ -1,3 +1,7 @@
+guest_book:
+    resource: "@GuestBookBundle/Resources/config/routing.yml"
+    prefix:   /
+
 game_of_thrones_light_and_shadow:
     resource: "@GameOfThronesLightAndShadowBundle/Controller/"
     type:     annotation

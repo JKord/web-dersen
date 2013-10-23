@@ -1,0 +1,41 @@
+{% extends "GuestBookBundle::layout.html.twig" %}
+
+{% form_theme form _self %}
+{% block form_row %}
+    <li>
+        {{ form_label(form) }}
+        <div>
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </div>
+    <li>
+{% endblock form_row %}
+
+{% block content %}
+<h1>Гостьова книга</h1>
+<div>
+    <span></span>
+    <ul class="form">
+        <form action="{{ path('guest_book_homepage')}}" method="POST" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <li>
+                <input type="submit" value="Залишити повідомлення" />
+            </li>
+        </form>
+    </ul>
+</div>
+<div class="reviews">
+    <ul>
+        {% if reviews %}
+          {% for r in reviews %}
+            <li>
+                <div class="caption"{{ r.name }}<span>{{ r.date|date('d.m.Y H:m:s') }}</span></div>
+                <div class="text">{{ r.text }}</div>
+            </li>
+          {% endfor %}
+        {% else %}
+            <li>Повідомлення ще немає.</li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
