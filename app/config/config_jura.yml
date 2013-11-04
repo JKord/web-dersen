@@ -21,20 +21,3 @@ web_profiler:
 
 #assetic:
 #    use_controller: true
-
-# Doctrine Configuration
-doctrine:
-    dbal:
-        driver:   %database_driver%
-        host:     localhost
-        port:     %database_port%
-        dbname:   flirt_expert
-        user:     root
-        password:  
-        charset:  UTF8
-
-    orm:
-        auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
-parameters:
-    base_url: https://flirtexpert.com/

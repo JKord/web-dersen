@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+<h1>Catalog Films</h1>
+<ul>
+    <li><a href="{{ path('catalog_films_actors') }}">Actors</a></li>
+    <li><a href="{{ path('catalog_films_categories') }}">Categories</a></li>
+    <li><a href="{{ path('catalog_films_films') }}">Films</a></li>
+    <li><a href="{{ path('catalog_films_genres') }}">Genres</a></li>
+</ul>
+{% endblock %}
