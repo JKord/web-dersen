@@ -1,3 +1,7 @@
+catalog_films:
+    resource: "@CatalogFilmsBundle/Resources/config/routing.yml"
+    prefix:   /catalog_films
+
 guest_book:
     resource: "@GuestBookBundle/Resources/config/routing.yml"
     prefix:   /

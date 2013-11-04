@@ -1,0 +1,30 @@
+catalog_films_genres:
+    pattern:  /
+    defaults: { _controller: "CatalogFilmsBundle:Genres:index" }
+
+catalog_films_genres_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CatalogFilmsBundle:Genres:show" }
+
+catalog_films_genres_new:
+    pattern:  /new
+    defaults: { _controller: "CatalogFilmsBundle:Genres:new" }
+
+catalog_films_genres_create:
+    pattern:  /create
+    defaults: { _controller: "CatalogFilmsBundle:Genres:create" }
+    requirements: { _method: post }
+
+catalog_films_genres_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CatalogFilmsBundle:Genres:edit" }
+
+catalog_films_genres_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CatalogFilmsBundle:Genres:update" }
+    requirements: { _method: post|put }
+
+catalog_films_genres_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CatalogFilmsBundle:Genres:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+catalog_films_categories:
+    pattern:  /
+    defaults: { _controller: "CatalogFilmsBundle:Categories:index" }
+
+catalog_films_categories_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CatalogFilmsBundle:Categories:show" }
+
+catalog_films_categories_new:
+    pattern:  /new
+    defaults: { _controller: "CatalogFilmsBundle:Categories:new" }
+
+catalog_films_categories_create:
+    pattern:  /create
+    defaults: { _controller: "CatalogFilmsBundle:Categories:create" }
+    requirements: { _method: post }
+
+catalog_films_categories_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CatalogFilmsBundle:Categories:edit" }
+
+catalog_films_categories_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CatalogFilmsBundle:Categories:update" }
+    requirements: { _method: post|put }
+
+catalog_films_categories_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CatalogFilmsBundle:Categories:delete" }
+    requirements: { _method: post|delete }
