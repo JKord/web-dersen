@@ -3,6 +3,7 @@ namespace Catalog\FilmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/** @ORM\MappedSuperclass */
 class Entity
 {
     /**

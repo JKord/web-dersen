@@ -1,5 +1,4 @@
 <?php
-
 namespace Catalog\FilmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
