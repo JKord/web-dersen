@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new GameOfThrones\MorsWestfordBundle\GameOfThronesMorsWestfordBundle(),
             new GameOfThrones\LegacyBundle\GameOfThronesLegacyBundle(),
             new GameOfThrones\LightAndShadowBundle\GameOfThronesLightAndShadowBundle(),
-            new Guest\BookBundle\GuestBookBundle(),
+            new Guest\BookBundle\GuestBookBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'jura'))) {
