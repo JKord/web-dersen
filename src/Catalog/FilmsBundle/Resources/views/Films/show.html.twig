@@ -17,6 +17,10 @@
                 <th>Description</th>
                 <td>{{ entity.description }}</td>
             </tr>
+            <tr>
+                <th>Image</th>
+                <td>{% if(entity.image) %}<img width="50px" src="{{ entity.image }}"/>{% endif %}</td>
+            </tr>
         </tbody>
     </table>
 

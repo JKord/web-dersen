@@ -19,6 +19,13 @@ class Films extends Entity
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="text", nullable=true)
+     */
+    private $image;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Actors", inversedBy="film")
@@ -95,6 +102,26 @@ class Films extends Entity
     {
         return $this->description;
     }
+
+    /**
+     * @param string $image
+     * @return Films
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
 
     /**
      * Add actor
