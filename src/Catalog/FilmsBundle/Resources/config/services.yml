@@ -1,0 +1,17 @@
+parameters:
+    catalog_films.helper_method.class: Catalog\FilmsBundle\Helper\HelperMethod
+
+    catalog_films.form_type.films.class: Catalog\FilmsBundle\Form\FilmsType
+
+services:
+    catalog_films.helper_method:
+        class: %catalog_films.helper_method.class%
+        arguments: []
+        calls:
+            - [ setPathUploadFile, ["%upload_file%"] ]
+
+#    catalog_films.form_type.films:
+#        class: %catalog_films.form_type.films.class%
+#        arguments: []
+#        calls:
+#           - [ setHm, [@catalog_films.helper_method] ]

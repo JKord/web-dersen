@@ -19,13 +19,15 @@ class AppKernel extends Kernel
             new GameOfThrones\MorsWestfordBundle\GameOfThronesMorsWestfordBundle(),
             new GameOfThrones\LegacyBundle\GameOfThronesLegacyBundle(),
             new GameOfThrones\LightAndShadowBundle\GameOfThronesLightAndShadowBundle(),
-            new Guest\BookBundle\GuestBookBundle()
+            new Guest\BookBundle\GuestBookBundle(),
+            new Catalog\FilmsBundle\CatalogFilmsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'jura'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;

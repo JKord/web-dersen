@@ -1,0 +1,129 @@
+.content {
+    width: 800px;
+    margin: 10px auto;
+}
+footer {
+    text-align: center;
+}
+
+/*----------------------------------------------------------------------------------*/
+/*------------------------------RESET DEFAULT STYLES--------------------------------*/
+/*----------------------------------------------------------------------------------*/
+li {
+    list-style:none;
+}
+
+/*----------------------------------------------------------------------------------*/
+/*-------------------------------------WRAPPER--------------------------------------*/
+/*----------------------------------------------------------------------------------*/
+body{
+
+}
+
+.wrapper {
+
+}
+
+.content {
+    width: 96%;
+    margin: 10px auto;
+
+}
+
+footer {
+    padding-top: 20px;
+    text-align: center;
+}
+
+#wrapper {width: 100%; overflow: hidden; margin: 126px auto 50px auto;}
+#content {width: 100%; margin: 0 0 0 20px;}
+#login-wrapper {width: 980px; margin: 0px auto;}
+#menu ul li {heigth:32px; padding-top:0; padding-bottom:0; line-heigth:25px}
+#menu ul li a, #menu ul li label {line-height:32px;}
+#menu ul li label {margin-right:10px;}
+h2 {margin-top: 40px;}
+#counter {width: 50px; border: solid 1px #ccc;}
+#date {width: 130px; border: solid 1px #ccc;}
+#login_form input    {float:left; margin:10px}
+
+table {
+    width: 100%;
+}
+
+table      { font: 12px "Arial";}
+table thead   {
+    font-weight:bold;
+    border-right: medium none currentColor;
+}
+table thead tr th {
+    border: 1px solid #E6E6E6;
+    line-height: 1.1em;
+    padding: 8px 10px;
+}
+table tbody td {
+    border-bottom: 1px solid #E6E6E6;
+    border-left: 1px solid #E6E6E6;
+    border-right: 1px solid #E6E6E6;
+    border-top: medium none currentColor;
+    line-height: 1.1em;
+    padding: 2px 5px;
+    word-wrap: break-word;
+}
+table tbody tr:hover {
+    background-color: #F2F2F2;
+}
+table tbody td span.delete {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin: 0;
+    background-position: center top;
+    border: none;
+    cursor: pointer;
+}
+table tbody td span.delete:hover {
+    background-position: center bottom;
+}
+#header-wrapper {
+    padding-top: 2.3%;
+    min-height: 94px;
+}
+#header-wrapper header {
+    height: 90px;
+}
+
+a {
+    display: inline-block;
+    padding: 3px 2px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+}
+a:hover {
+    background-color: #99B3FF;
+}
+a:visited {
+    color: #000000;
+}
+
+form div {
+    width: 550px;
+    border-bottom: solid 1px #000000;
+}
+
+form label {
+    width: 150px;
+    padding: 10px;
+    display: inline-block;
+}
+form div label:last-child {
+    width: 400px;
+    color: red;
+}
+form input[type="text"], form input[type="email"] {
+    width: 200px;
+}
+textarea {
+    width: 400px;
+    height: 60px;
+}

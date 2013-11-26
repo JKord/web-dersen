@@ -5,3 +5,4 @@ Project
 1. Git Flow
 2. Create test Bundle, (View, Controller)
 3. GuestBook
+4. Fixture, reload, Services, FormEvents

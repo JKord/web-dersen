@@ -1,0 +1,19 @@
+catalog_films_actors:
+    resource: "@CatalogFilmsBundle/Resources/config/routing/actors.yml"
+    prefix:   /actors
+
+catalog_films_categories:
+    resource: "@CatalogFilmsBundle/Resources/config/routing/categories.yml"
+    prefix:   /categories
+
+catalog_films_films:
+    resource: "@CatalogFilmsBundle/Resources/config/routing/films.yml"
+    prefix:   /films
+
+catalog_films_genres:
+    resource: "@CatalogFilmsBundle/Resources/config/routing/genres.yml"
+    prefix:   /genres
+
+catalog_films:
+    pattern:  /
+    defaults: { _controller: CatalogFilmsBundle:Default:index }

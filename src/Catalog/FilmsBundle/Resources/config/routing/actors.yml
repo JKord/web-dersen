@@ -1,0 +1,30 @@
+catalog_films_actors:
+    pattern:  /
+    defaults: { _controller: "CatalogFilmsBundle:Actors:index" }
+
+catalog_films_actors_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CatalogFilmsBundle:Actors:show" }
+
+catalog_films_actors_new:
+    pattern:  /new
+    defaults: { _controller: "CatalogFilmsBundle:Actors:new" }
+
+catalog_films_actors_create:
+    pattern:  /create
+    defaults: { _controller: "CatalogFilmsBundle:Actors:create" }
+    requirements: { _method: post }
+
+catalog_films_actors_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CatalogFilmsBundle:Actors:edit" }
+
+catalog_films_actors_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CatalogFilmsBundle:Actors:update" }
+    requirements: { _method: post|put }
+
+catalog_films_actors_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CatalogFilmsBundle:Actors:delete" }
+    requirements: { _method: post|delete }
