@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{% if(entity.image) %}<img width="50px" src="{{ entity.image }}"/>{% endif %}</td>
+                <td>{% if(entity.image) %}<img height="50px" src="{{ asset(entity.image) }}"/>{% endif %}</td>
             </tr>
         </tbody>
     </table>

@@ -31,24 +31,20 @@ class FilmsType extends AbstractType
             ->add('actor')
             ->add('category')
             ->add('genre')
-            ->add('image','file', array('required' => false, 'data_class' => null))
+            ->add('imageUpLoad','file', array('data_class' => null, 'mapped' => false))
         ;
 
         $url = null;
 
         $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) use ($url) {
             $form = $event->getForm();
+            $file = $form['imageUpLoad']->getData();
 
-            $res = $this->hm->uploadFile($form['image']->getData());
+            $res = $this->hm->uploadFile($file);
             if(is_array($res)) {
-                $url = $res['url'];
+                $form->add('image', 'text', array('data' => $res['url']));
             } else
                 $form->addError(new FormError($res));
-        });
-
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($url) {
-            $form = $event->getForm();
-            $form['image']->setData($url);
         });
     }
     

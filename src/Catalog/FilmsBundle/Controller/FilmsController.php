@@ -41,6 +41,7 @@ class FilmsController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setImage($form['image']->getData());
             $em->persist($entity);
             $em->flush();
 
@@ -169,6 +170,7 @@ class FilmsController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $entity->setImage($editForm['image']->getData());
             $em->flush();
 
             return $this->redirect($this->generateUrl('catalog_films_films_edit', array('id' => $id)));

@@ -19,7 +19,7 @@
                 <td><a href="{{ path('catalog_films_films_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
-                <td>{% if(entity.image) %}<img width="50px" src="{{ entity.image }}"/>{% endif %}</td>
+                <td>{% if(entity.image) %}<img height="50px" src="{{ asset(entity.image) }}"/>{% endif %}</td>
                 <td>
                 <ul>
                     <li>
