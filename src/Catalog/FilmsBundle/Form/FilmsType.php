@@ -34,9 +34,7 @@ class FilmsType extends AbstractType
             ->add('imageUpLoad','file', array('data_class' => null, 'mapped' => false))
         ;
 
-        $url = null;
-
-        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) use ($url) {
+        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) {
             $form = $event->getForm();
             $file = $form['imageUpLoad']->getData();
 
