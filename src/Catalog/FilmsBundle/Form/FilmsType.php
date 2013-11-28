@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormEvents,
     Symfony\Component\Form\FormEvent,
     Symfony\Component\Form\FormError;
 
+use Catalog\FilmsBundle\Form\EventListener\UploadFileSubscriber;
+
 class FilmsType extends AbstractType
 {
     private $hm;
@@ -25,25 +27,18 @@ class FilmsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $nse = 'Catalog\\FilmsBundle\\Entity\\';
+
         $builder
             ->add('name')
             ->add('description')
-            ->add('actor')
-            ->add('category')
-            ->add('genre')
-            ->add('imageUpLoad','file', array('data_class' => null, 'mapped' => false))
+            ->add('actor', 'entity', array('class' => $nse.'Actors', 'property' => 'name', 'multiple' => true, 'expanded' => true ))
+            ->add('category', 'entity', array('class' => $nse.'Categories', 'property' => 'name', 'multiple' => true, 'expanded' => true ))
+            ->add('genre', 'entity', array('class' => $nse.'Genres', 'property' => 'name', 'multiple' => true, 'expanded' => true ))
+            ->add('imageUpload','file', array('data_class' => null, 'mapped' => false, 'required' => false ))
         ;
 
-        $builder->addEventListener(FormEvents::SUBMIT, function(FormEvent $event) {
-            $form = $event->getForm();
-            $file = $form['imageUpLoad']->getData();
-
-            $res = $this->hm->uploadFile($file);
-            if(is_array($res)) {
-                $form->add('image', 'text', array('data' => $res['url']));
-            } else
-                $form->addError(new FormError($res));
-        });
+        $builder->addEventSubscriber(new UploadFileSubscriber($this->hm));
     }
     
     /**

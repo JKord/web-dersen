@@ -14,7 +14,6 @@ use Catalog\FilmsBundle\Form\FilmsType;
  */
 class FilmsController extends Controller
 {
-
     /**
      * Lists all Films entities.
      *
@@ -41,7 +40,6 @@ class FilmsController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->setImage($form['image']->getData());
             $em->persist($entity);
             $em->flush();
 
@@ -63,7 +61,7 @@ class FilmsController extends Controller
     */
     private function createCreateForm(Films $entity)
     {
-        $form = $this->createForm(new FilmsType($this->get('catalog_films.helper_method')), $entity, array(
+        $form = $this->createForm($this->get('catalog_films.form.type.film'), $entity, array(
             'action' => $this->generateUrl('catalog_films_films_create'),
             'method' => 'POST',
         ));
@@ -95,7 +93,6 @@ class FilmsController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('CatalogFilmsBundle:Films')->find($id);
 
         if (!$entity) {
@@ -142,7 +139,7 @@ class FilmsController extends Controller
     */
     private function createEditForm(Films $entity)
     {
-        $form = $this->createForm(new FilmsType($this->get('catalog_films.helper_method')), $entity, array(
+        $form = $this->createForm($this->get('catalog_films.form.type.film'), $entity, array(
             'action' => $this->generateUrl('catalog_films_films_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
