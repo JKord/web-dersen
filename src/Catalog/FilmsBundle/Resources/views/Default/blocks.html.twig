@@ -1,0 +1,8 @@
+{% block _catalog_filmsbundle_films_image_row %}
+    <div class="row">
+        {{ form_label(form) }}
+        <input type="file" id="{{ id }}" name="{{ full_name }}" accept="jpg|jpeg|png"/>
+        {% if value %}<img src="{{ asset(value) }}" height="200px"/>{% endif %}
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
