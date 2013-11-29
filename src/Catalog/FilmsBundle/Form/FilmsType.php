@@ -32,10 +32,25 @@ class FilmsType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('actor', 'entity', array('class' => $nse.'Actors', 'property' => 'name', 'multiple' => true, 'expanded' => true ))
-            ->add('category', 'entity', array('class' => $nse.'Categories', 'property' => 'name', 'multiple' => true, 'expanded' => true ))
-            ->add('genre', 'entity', array('class' => $nse.'Genres', 'property' => 'name', 'multiple' => true, 'expanded' => true ))
-            ->add('imageUpload','file', array('data_class' => null, 'mapped' => false, 'required' => false ))
+            ->add('actor', 'entity', array(
+                'class' => $nse.'Actors',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true
+            ))
+            ->add('category', 'entity', array(
+                'class' => $nse.'Categories',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true
+            ))
+            ->add('genre', 'entity', array(
+                'class' => $nse.'Genres',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true
+            ))
+            ->add('image')
         ;
 
         $builder->addEventSubscriber(new UploadFileSubscriber($this->hm));

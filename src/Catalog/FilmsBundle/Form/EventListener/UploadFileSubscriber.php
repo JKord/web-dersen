@@ -23,13 +23,13 @@ class UploadFileSubscriber implements EventSubscriberInterface
     public function submit(FormEvent $event)
     {
         $form = $event->getForm();
-        $file = $form['imageUpload']->getData();
-        $form->add('image', 'text');
+        $data = $form->getData();
+        $file = $form['image']->getData();
 
         if('' == $file) return;
         $res = $this->hm->uploadFile($file);
         if(is_array($res)) {
-            $form['image']->setData($res['url']);
+            $data->setImage($res['url']);
         } else
             $form->addError(new FormError($res));
     }
