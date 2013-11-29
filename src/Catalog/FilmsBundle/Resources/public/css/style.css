@@ -107,7 +107,7 @@ a:visited {
 }
 
 form div {
-    width: 550px;
+    width: 580px;
     border-bottom: solid 1px #000000;
 }
 
@@ -115,10 +115,6 @@ form label {
     width: 150px;
     padding: 10px;
     display: inline-block;
-}
-form div label:last-child {
-    width: 400px;
-    color: red;
 }
 form input[type="text"], form input[type="email"] {
     width: 200px;
