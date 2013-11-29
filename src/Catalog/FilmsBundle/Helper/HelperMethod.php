@@ -77,9 +77,7 @@ class HelperMethod
         $path_name = $path.$name;
 
         if($file->move($path, $name))
-        {
             return array('type' => $type, 'url' => $path_name);
-        }
         else
            return false;
     }
