@@ -1,8 +1,8 @@
 <?php
 namespace Catalog\FilmsBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM
-
+use Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Films
@@ -15,14 +15,18 @@ class Films extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)     *
+     * @Assert\Length(min=3, max=65000)
+     * @Assert\NotBlank
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="text", nullable=true)
+     * @ORM\Column(name="image", type="text", nullable=true)     *
+     * @Assert\Length(min=3, max=65000)
+     * @Assert\NotBlank(groups={"New"})
      */
     private $image;
 
@@ -110,7 +114,8 @@ class Films extends Entity
      */
     public function setImage($image)
     {
-        $this->image = $image;
+        if('' != $image)
+            $this->image = $image;
 
         return $this;
     }

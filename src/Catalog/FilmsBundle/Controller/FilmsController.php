@@ -153,7 +153,8 @@ class FilmsController extends Controller
         $form = $this->createForm($this->get('catalog_films.form.type.film'), $entity, array(
             'action' => $this->generateUrl('catalog_films_films_create'),
             'method' => 'POST',
-            'attr' => array('enctype' => 'multipart/form-data')
+            'validation_groups' => array('New', 'Default'),
+            'attr'   => array('enctype' => 'multipart/form-data')
         ));
 
         $form->add('submit', 'submit', array('label' => 'Create'));
