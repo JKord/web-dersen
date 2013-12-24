@@ -8,3 +8,4 @@ Project
 4. CatalogFilms
 5. Fixture, reload, Services, FormEvents
 6. Test, Validation Groups
+7. Doctrine Extensions: Slug, Timestampable
