@@ -2,6 +2,7 @@
 namespace Catalog\FilmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
+    Gedmo\Mapping\Annotation as Gedmo,
     Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -74,6 +75,30 @@ class Films extends Entity
      * )
      */
     private $genre;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"}, updatable=true, separator="_")
+     * @ORM\Column(name="uri", type="text", nullable=true, length=300)
+     */
+    private $uri;
+
+    /**
+     * @var datetime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var datetime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
     /**
      * Constructor
@@ -226,5 +251,61 @@ class Films extends Entity
     public function getGenre()
     {
         return $this->genre;
+    }
+
+    /**
+     * @param string $uri
+     * @return Films
+     */
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * @param \Catalog\FilmsBundle\Entity\datetime $created
+     * @return Films
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * @param \Catalog\FilmsBundle\Entity\datetime $updated
+     * @return Films
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+
+    /**
+     * @return \Catalog\FilmsBundle\Entity\datetime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+    /**
+     * @return \Catalog\FilmsBundle\Entity\datetime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }

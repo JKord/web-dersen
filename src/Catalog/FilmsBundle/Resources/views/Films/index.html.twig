@@ -10,6 +10,9 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Image</th>
+                <th>Uri</th>
+                <th>Created</th>
+                <th>Updated</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +23,9 @@
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
                 <td>{% if(entity.image) %}<img height="50px" src="{{ asset(entity.image) }}"/>{% endif %}</td>
+                <td>{{ entity.uri }}</td>
+                <td>{{ entity.created|date("F jS \\a\\t g:ia") }}</td>
+                <td>{{ entity.updated|date("F jS \\a\\t g:ia") }}</td>
                 <td>
                 <ul>
                     <li>
