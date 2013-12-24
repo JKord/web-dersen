@@ -60,7 +60,9 @@ class LoadFilmsData implements FixtureInterface
             $film
                 ->setName('Film'.$i)
                 ->addActor($actorRep->findAll()[$i])
-                ->addCategory($categoryRep->findAll()[$i]);
+                ->addCategory($categoryRep->findAll()[$i])
+                ->setCreated(new \DateTime())
+                ->setUpdated(new \DateTime());
 
             $manager->persist($film);
         }
