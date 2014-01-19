@@ -9,3 +9,4 @@ Project
 5. Fixture, reload, Services, FormEvents
 6. Test, Validation Groups, Param Converter
 7. Doctrine Extensions: Slug, Timestampable
+8. FOSUserBundle
