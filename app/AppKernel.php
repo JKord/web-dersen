@@ -1,7 +1,6 @@
 <?php
-
-use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel,
+    Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
@@ -23,7 +22,8 @@ class AppKernel extends Kernel
             new GameOfThrones\LegacyBundle\GameOfThronesLegacyBundle(),
             new GameOfThrones\LightAndShadowBundle\GameOfThronesLightAndShadowBundle(),
             new Guest\BookBundle\GuestBookBundle(),
-            new Catalog\FilmsBundle\CatalogFilmsBundle()
+            new Catalog\FilmsBundle\CatalogFilmsBundle(),
+            new Catalog\UserBundle\CatalogUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'jura'))) {
