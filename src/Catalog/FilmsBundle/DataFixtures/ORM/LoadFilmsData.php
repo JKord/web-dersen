@@ -2,17 +2,31 @@
 namespace Catalog\FilmsBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface,
-    Doctrine\Common\Persistence\ObjectManager;
+    Doctrine\Common\Persistence\ObjectManager,
+    Symfony\Component\DependencyInjection\ContainerAwareInterface,
+    Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Catalog\FilmsBundle\Entity\Actors,
     Catalog\FilmsBundle\Entity\Categories,
-    Catalog\FilmsBundle\Entity\Films;
+    Catalog\FilmsBundle\Entity\Films,
+    Catalog\FilmsBundle\Entity\User;
 
-class LoadFilmsData implements FixtureInterface
+class LoadFilmsData implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function load(ObjectManager $manager)
     {
         $this
+            ->loadUser($manager)
             ->loadActors($manager)
             ->loadCategories($manager)
             ->loadFilms($manager);
@@ -44,6 +58,23 @@ class LoadFilmsData implements FixtureInterface
 
             $manager->persist($cat);
         }
+
+        return $this;
+    }
+
+    public function loadUser(ObjectManager $manager)
+    {
+        $um = $this->container->get('fos_user.user_manager');
+
+        $user = $um->createUser();
+        $user
+            ->setUsername('admin')
+            ->setPlainPassword('adminpass')
+            ->setEmail('admin@a.a')
+            ->setEnabled(true)
+            ->setRoles(array('ROLE_ADMIN'));
+
+        $manager->persist($user);
 
         return $this;
     }

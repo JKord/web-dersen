@@ -6,8 +6,13 @@ use Symfony\Component\HttpFoundation\Request,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-use Catalog\FilmsBundle\Entity\Films;
-use Catalog\FilmsBundle\Form\FilmsType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException,
+    Symfony\Component\Security\Acl\Domain\ObjectIdentity,
+    Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
+    Symfony\Component\Security\Acl\Permission\MaskBuilder;
+
+use Catalog\FilmsBundle\Entity\Films,
+    Catalog\FilmsBundle\Form\FilmsType;
 
 /**
  * Films controller.
@@ -83,6 +88,13 @@ class FilmsController extends Controller
         $editForm = $this->createEditForm($film);
         $deleteForm = $this->createDeleteForm($film->getId());
 
+
+//        $securityContext = $this->get('security.context');
+//        // check for edit access
+//        if (false === $securityContext->isGranted('EDIT', $film)) {
+//            throw new AccessDeniedException();
+//        }
+
         return array(
             'entity'      => $film,
             'edit_form'   => $editForm->createView(),
@@ -103,7 +115,35 @@ class FilmsController extends Controller
 
         if ($editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $em->persist($film);
             $em->flush();
+
+            // creating the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($film);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // retrieving the security identity of the currently logged-in user
+            $securityContext = $this->get('security.context');
+            $user = $securityContext->getToken()->getUser();
+            $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+                ->add('delete')
+                ->add('undelete')
+            ;
+            $mask = $builder->get(); // int(29)
+
+            $identity = new UserSecurityIdentity('johannes', 'Catalog\FilmsBundle\Entity\Films');
+            $acl->insertObjectAce($identity, $mask);
+
+            // grant owner access
+            //$acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
 
             return $this->redirect($this->generateUrl('catalog_films_films_edit', array('id' => $film->getId())));
         }
