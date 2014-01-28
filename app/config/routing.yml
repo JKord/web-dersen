@@ -1,3 +1,8 @@
+#catalog_user:
+#    resource: "@CatalogUserBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
 catalog_films:
     resource: "@CatalogFilmsBundle/Resources/config/routing.yml"
     prefix:   /catalog_films
