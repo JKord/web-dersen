@@ -8,20 +8,28 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
+
+            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+
 
             new GameOfThrones\MorsWestfordBundle\GameOfThronesMorsWestfordBundle(),
             new GameOfThrones\LegacyBundle\GameOfThronesLegacyBundle(),
             new GameOfThrones\LightAndShadowBundle\GameOfThronesLightAndShadowBundle(),
             new Guest\BookBundle\GuestBookBundle(),
+
             new Catalog\FilmsBundle\CatalogFilmsBundle(),
             new Catalog\UserBundle\CatalogUserBundle(),
         );

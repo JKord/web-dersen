@@ -7,5 +7,7 @@ Project
 3. GuestBook
 4. CatalogFilms
 5. Fixture, reload, Services, FormEvents
-6. Test, Validation Groups
+6. Test, Validation Groups, Param Converter
 7. Doctrine Extensions: Slug, Timestampable
+8. FOSUserBundle
+9. Fixture (User), ACE, JMS
