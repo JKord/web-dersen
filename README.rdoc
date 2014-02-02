@@ -10,4 +10,4 @@ Project
 6. Test, Validation Groups, Param Converter
 7. Doctrine Extensions: Slug, Timestampable
 8. FOSUserBundle
-9. Fixture (User), ACE
+9. Fixture (User), ACE, JMS
