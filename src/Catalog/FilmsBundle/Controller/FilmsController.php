@@ -6,10 +6,14 @@ use Symfony\Component\HttpFoundation\Request,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-use Symfony\Component\Security\Core\Exception\AccessDeniedException,
-    Symfony\Component\Security\Acl\Domain\ObjectIdentity,
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity,
     Symfony\Component\Security\Acl\Domain\UserSecurityIdentity,
     Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException,
+    Symfony\Component\Security\Acl\Exception\AclAlreadyExistsException;
+
+use JMS\SecurityExtraBundle\Annotation\Secure,
+    JMS\SecurityExtraBundle\Annotation\SecureParam;
 
 use Catalog\FilmsBundle\Entity\Films,
     Catalog\FilmsBundle\Form\FilmsType;
@@ -46,6 +50,16 @@ class FilmsController extends Controller
             $em->persist($film);
             $em->flush();
 
+            // creating the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($film);
+
+            $acl = $aclProvider->createAcl($objectIdentity);
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+
+            $aclProvider->updateAcl($acl);
+
             return $this->redirect($this->generateUrl('catalog_films_films_show', array('id' => $film->getId())));
         }
 
@@ -74,6 +88,33 @@ class FilmsController extends Controller
      */
     public function showAction(Films $film)
     {
+        // creating the ACL
+        $aclProvider = $this->get('security.acl.provider');
+        $objectIdentity = ObjectIdentity::fromDomainObject(clone $film);
+
+        try {
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // retrieving the security identity of the currently logged-in user
+            /*$securityContext = $this->get('security.context');
+            $user = $securityContext->getToken()->getUser();*/
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+               // ->add('delete')
+               // ->add('undelete')
+            ;
+            $mask = $builder->get();
+
+            //$acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $acl->insertObjectAce($securityIdentity, $mask);
+
+            $aclProvider->updateAcl($acl);
+        } catch(AclAlreadyExistsException $e) { }
+
         $deleteForm = $this->createDeleteForm($film->getId());
         return array('entity' => $film, 'delete_form' => $deleteForm->createView());
     }
@@ -82,18 +123,12 @@ class FilmsController extends Controller
      * Displays a form to edit an existing Films entity.
      * @Template()
      * @ParamConverter("film", class="CatalogFilmsBundle:Films")
+     * @SecureParam(name="film", permissions="EDIT")
      */
     public function editAction(Films $film)
     {
         $editForm = $this->createEditForm($film);
         $deleteForm = $this->createDeleteForm($film->getId());
-
-
-//        $securityContext = $this->get('security.context');
-//        // check for edit access
-//        if (false === $securityContext->isGranted('EDIT', $film)) {
-//            throw new AccessDeniedException();
-//        }
 
         return array(
             'entity'      => $film,
@@ -115,35 +150,7 @@ class FilmsController extends Controller
 
         if ($editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            $em->persist($film);
             $em->flush();
-
-            // creating the ACL
-            $aclProvider = $this->get('security.acl.provider');
-            $objectIdentity = ObjectIdentity::fromDomainObject($film);
-            $acl = $aclProvider->createAcl($objectIdentity);
-
-            // retrieving the security identity of the currently logged-in user
-            $securityContext = $this->get('security.context');
-            $user = $securityContext->getToken()->getUser();
-            $securityIdentity = UserSecurityIdentity::fromAccount($user);
-
-            $builder = new MaskBuilder();
-            $builder
-                ->add('view')
-                ->add('edit')
-                ->add('delete')
-                ->add('undelete')
-            ;
-            $mask = $builder->get(); // int(29)
-
-            $identity = new UserSecurityIdentity('johannes', 'Catalog\FilmsBundle\Entity\Films');
-            $acl->insertObjectAce($identity, $mask);
-
-            // grant owner access
-            //$acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
-            $aclProvider->updateAcl($acl);
 
             return $this->redirect($this->generateUrl('catalog_films_films_edit', array('id' => $film->getId())));
         }
@@ -157,7 +164,6 @@ class FilmsController extends Controller
 
     /**
      * Deletes a Films entity.
-     *
      */
     public function deleteAction(Request $request, $id)
     {
@@ -168,8 +174,19 @@ class FilmsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('CatalogFilmsBundle:Films')->find($id);
 
+            $securityContext = $this->get('security.context');
+            // check for edit access
+            if (false === $securityContext->isGranted('DELETE', $entity)) {
+                throw new AccessDeniedException();
+            }
+
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Films entity.');
+            }
+
+            $objectIdentity = ObjectIdentity::fromDomainObject($entity);
+            if ($objectIdentity) {
+                $this->get('security.acl.provider')->deleteAcl($objectIdentity);
             }
 
             $em->remove($entity);
