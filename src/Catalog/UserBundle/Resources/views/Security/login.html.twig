@@ -21,4 +21,7 @@
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
+<h2>SN</h2>
+{% render(controller('HWIOAuthBundle:Connect:connect')) %}
+
 {% endblock fos_user_content %}

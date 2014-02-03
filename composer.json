@@ -27,6 +27,7 @@
 
         "jms/security-extra-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
+        "hwi/oauth-bundle": "*",
 
         "incenteev/composer-parameter-handler": "~2.0",
         "phpunit/phpunit": "3.7.*"

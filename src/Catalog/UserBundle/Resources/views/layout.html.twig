@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block content %}
+{% block user %}
     <div>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <a href="{{ path('fos_user_profile_show') }}">
