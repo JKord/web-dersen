@@ -78,4 +78,30 @@ stof_doctrine_extensions:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Catalog\FilmsBundle\Entity\User
+    user_class: Catalog\UserBundle\Entity\User
+
+hwi_oauth:
+    firewall_name: main
+    resource_owners:
+        facebook:
+            type:          facebook
+            client_id:     %fb_apiId%
+            client_secret: %fb_secret%
+            scope:         "email"
+        google:
+            type:           google
+            client_id:      %google_apiId%
+            client_secret:  %google_secret%
+            scope:          "https://www.googleapis.com/auth/plus.login"
+            options:
+                request_visible_actions: "http://schemas.google.com/AddActivity http://schemas.google.com/CommentActivity"
+        vk:
+            type:           vkontakte
+            client_id:      %vk_apiId%
+            client_secret:  %vk_secret%
+
+
+services:
+    hwi_oauth.user.provider.entity:
+        class: Catalog\UserBundle\Provider\OAuthUserProvider
+        arguments: [@doctrine.orm.entity_manager]
