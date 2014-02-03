@@ -123,6 +123,7 @@ class FilmsController extends Controller
      * Displays a form to edit an existing Films entity.
      * @Template()
      * @ParamConverter("film", class="CatalogFilmsBundle:Films")
+     * @Secure(roles="ROLE_ADMIN")
      * @SecureParam(name="film", permissions="EDIT")
      */
     public function editAction(Films $film)
@@ -164,6 +165,7 @@ class FilmsController extends Controller
 
     /**
      * Deletes a Films entity.
+     * @Secure(roles="ROLE_ADMIN")
      */
     public function deleteAction(Request $request, $id)
     {

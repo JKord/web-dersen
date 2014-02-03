@@ -11,3 +11,4 @@ Project
 7. Doctrine Extensions: Slug, Timestampable
 8. FOSUserBundle
 9. Fixture (User), ACE, JMS
+10. HWIOAuthBundle
