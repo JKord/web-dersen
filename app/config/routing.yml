@@ -5,7 +5,10 @@
 
 catalog_films:
     resource: "@CatalogFilmsBundle/Resources/config/routing.yml"
-    prefix:   /catalog_films
+    prefix:   /{_locale}/catalog_films
+    defaults: { _locale: uk }
+    requirements:
+        _locale: uk|en
 
 guest_book:
     resource: "@GuestBookBundle/Resources/config/routing.yml"
