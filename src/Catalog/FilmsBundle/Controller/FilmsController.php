@@ -47,8 +47,16 @@ class FilmsController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $film->setTranslatableLocale($request->getLocale());
+
+            /*$transRep = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+            $transRep->translate($film, 'name', $request->getLocale(), $film->getName());*/
+
             $em->persist($film);
             $em->flush();
+
+           // $em->refresh($film);
 
             // creating the ACL
             $aclProvider = $this->get('security.acl.provider');

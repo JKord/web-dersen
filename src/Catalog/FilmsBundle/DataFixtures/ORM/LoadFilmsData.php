@@ -84,6 +84,7 @@ class LoadFilmsData implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
         $categoryRep = $manager->getRepository('CatalogFilmsBundle:Categories');
         $actorRep = $manager->getRepository('CatalogFilmsBundle:Actors');
+        $transRep = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         for($i = 0; $i < 10; $i++)
         {
