@@ -1,0 +1,12 @@
+сatalog_films: Catalog films
+
+actors: Actors
+categories: Categories
+films: Films
+genres: Genres
+
+Name: Name
+Description: Description
+Actor: Actor
+Category: Category
+Genre: Genre

@@ -1,0 +1,12 @@
+сatalog_films: Каталог фільмів
+
+actors: Актори
+categories: Категорії
+films: Фільми
+genres: Жанри
+
+Name: Назва
+Description: Опис
+Actor: Актор
+Category: Категорія
+Genre: Жанр

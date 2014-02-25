@@ -3,7 +3,9 @@ namespace Catalog\FilmsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM,
     Gedmo\Mapping\Annotation as Gedmo,
-    Symfony\Component\Validator\Constraints as Assert;
+    Symfony\Component\Validator\Constraints as Assert,
+    Gedmo\Translatable\Translatable;
+
 
 /**
  * Films
@@ -11,12 +13,21 @@ use Doctrine\ORM\Mapping as ORM,
  * @ORM\Table(name="films")
  * @ORM\Entity
  */
-class Films extends Entity
+class Films extends Entity implements Translatable
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)     *
+     * @Gedmo\Translatable
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Translatable
+     * @ORM\Column(name="description", type="text", nullable=true)
      * @Assert\Length(min=3, max=65000)
      * @Assert\NotBlank
      */
@@ -25,7 +36,7 @@ class Films extends Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="text", nullable=true)     *
+     * @ORM\Column(name="image", type="text", nullable=true)
      * @Assert\Length(min=3, max=65000)
      * @Assert\NotBlank(groups={"New"})
      */
@@ -99,6 +110,12 @@ class Films extends Entity
      * @ORM\Column(type="datetime")
      */
     private $updated;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
+
 
     /**
      * Constructor
@@ -301,11 +318,17 @@ class Films extends Entity
     {
         return $this->created;
     }
+
     /**
      * @return \Catalog\FilmsBundle\Entity\datetime
      */
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 }

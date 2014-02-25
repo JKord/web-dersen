@@ -10,7 +10,7 @@
     </head>
     <body>
         {% block body %}
-            <a href="{{ path('catalog_films') }}">Catalog films</a>
+            <a href="{{ path('catalog_films') }}">{{ 'сatalog_films'|trans }}</a>
             <div class="user">
               {% block user %}
                   {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
