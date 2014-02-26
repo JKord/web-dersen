@@ -4,7 +4,8 @@ namespace Catalog\FilmsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM,
     Gedmo\Mapping\Annotation as Gedmo,
     Symfony\Component\Validator\Constraints as Assert,
-    Gedmo\Translatable\Translatable;
+    Gedmo\Translatable\Translatable,
+    Doctrine\Common\Collections\ArrayCollection;
 
 use Catalog\FilmsBundle\Entity\Trans\FilmTranslation;
 
@@ -133,9 +134,9 @@ class Films extends Entity implements Translatable
      */
     public function __construct()
     {
-        $this->actor = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actor = new ArrayCollection();
+        $this->category = new ArrayCollection();
+        $this->genre = new ArrayCollection();
 
         $this->translations = new ArrayCollection();
     }
