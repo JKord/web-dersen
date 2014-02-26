@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM,
     Symfony\Component\Validator\Constraints as Assert,
     Gedmo\Translatable\Translatable;
 
+use Catalog\FilmsBundle\Entity\Trans\FilmTranslation;
+
 
 /**
  * Films
@@ -143,7 +145,7 @@ class Films extends Entity implements Translatable
         return $this->translations;
     }
 
-    public function addTranslation(CategoryTranslation $t)
+    public function addTranslation(FilmTranslation $t)
     {
         if (!$this->translations->contains($t)) {
             $this->translations[] = $t;
