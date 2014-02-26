@@ -11,7 +11,8 @@ use Doctrine\ORM\Mapping as ORM,
  * Films
  *
  * @ORM\Table(name="films")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Catalog\FilmsBundle\Entity\Repository\FilmRepository")
+ * @Gedmo\TranslationEntity(class="Catalog\FilmsBundle\Entity\Trans\FilmTranslation")
  */
 class Films extends Entity implements Translatable
 {
@@ -116,6 +117,14 @@ class Films extends Entity implements Translatable
      */
     private $locale;
 
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="Catalog\FilmsBundle\Entity\Trans\FilmTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
 
     /**
      * Constructor
@@ -125,6 +134,21 @@ class Films extends Entity implements Translatable
         $this->actor = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category = new \Doctrine\Common\Collections\ArrayCollection();
         $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
+
+        $this->translations = new ArrayCollection();
+    }
+
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    public function addTranslation(CategoryTranslation $t)
+    {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
     }
 
     /**
